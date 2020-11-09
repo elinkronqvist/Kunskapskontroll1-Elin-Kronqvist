@@ -2,4 +2,4 @@
 
 Beskrivning av vad er applikation gör
 
-test
+Klicka på loggan ..
