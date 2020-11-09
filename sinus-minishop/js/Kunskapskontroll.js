@@ -7,7 +7,7 @@
 
 //skapar ett button-element
 let buttonElement = document.querySelectorAll('button');
-console.log(buttonElement);
+/* console.log(buttonElement); */
 
 //skapar reset-button som ser likadan ut som de andra buttons
 let resetButton = document.createElement('button');
@@ -28,12 +28,11 @@ resetButton.style.borderRadius = '.2rem';
 resetButton.style.border = '.5rem solid orange';
 resetButton.style.boxShadow = '.2rem .5rem 1rem grey';
 
-
-console.log(resetButton);
+/* console.log(resetButton); */
 
 //skapar nav-element i header-navigation
 let navElement = document.querySelector('#header-navigation');
-console.log(navElement);
+/* console.log(navElement); */
 
 //skapar element för länkarna för att kunna placera ut resetButton före första elementet 
 navElement = document.querySelectorAll('a');
@@ -85,7 +84,7 @@ function changeSecondImgToFire(){
 
 //skapar ett footer-element
 let footerElement = document.querySelector('footer');
-console.log(footerElement);
+/* console.log(footerElement); */
 
 //skapar ett event som ändrar bakgrundsfärgen på footern 
 footerElement.addEventListener('mouseenter', changeFooterElementToBlue)
@@ -107,23 +106,30 @@ function changeFooterElementToLightGrey(){
 //4. Ändra text på minst ett element
 /* ------------------------------------------------------------------------------ */
 
-//skapar ett element 
+//skapar ett element för headern
 let headerElement = document.querySelectorAll('header img');
+//skapar ett element för Sinus-logon
 let logoImg = headerElement[0];
-console.log(logoImg);
+/* console.log(logoImg); */
 
+//skapar ett event med klick som ändrar H2 under produktbilderna
 logoImg.addEventListener('click', changeTextH2);
 
+//skapar en array som ska namnge de nya rubrikerna genom en loop
 let hoodies = ['Grey Hoodie', 'Green Hoodie', 'Blue Hoodie'];
 
+//skapar en funktion med en loop som namnger de nya h2
 function changeTextH2(){
+    //skapar elementet
     let h2Elements = document.querySelectorAll('h2');
     for (let i = 0; i < h2Elements.length; i++){
         h2Elements[i].innerText = hoodies[i];
     }
 }
 
+//skapar en funktion som ändrar tillbaka H2 till ordinarie text
 function changeTextH2Back(){
+    //skapar elementet
     let h2Elements = document.querySelectorAll('h2');
     for (let i = 0; i < h2Elements.length; i++){
         h2Elements[i].innerText = 'Sinus Hoodie';
@@ -134,11 +140,15 @@ function changeTextH2Back(){
 //5. Ändra färg på minst en knapp
 /* ------------------------------------------------------------------------------ */
 
-
+//skapar ett element för hela HTML
 let htmlElement = document.querySelector('html');
 
+
+//skapar ett event med keydown som ändrar bakgrundsfärg på bodyn
 htmlElement.addEventListener('keydown', changeBackgroundColor);
 
+
+//skapar funktionen som ändrar färg på bodyn när man skriver "Sinus"
     function changeBackgroundColor(event){
         console.log(event.key);
         let bodyElement = document.querySelector('body');
@@ -156,6 +166,7 @@ htmlElement.addEventListener('keydown', changeBackgroundColor);
         }
     }
 
+    //skapar funktionen som ändrar tillbaka bodyn till vit
     function changeBackgroundColorBack(){
         let bodyElement = document.querySelector('body');
         bodyElement.style.backgroundColor = 'white';
@@ -166,32 +177,40 @@ htmlElement.addEventListener('keydown', changeBackgroundColor);
 //6. Ta bort minst 1 element (Måste läggas till igen när man trycker på återställningsknappen)
 /* ------------------------------------------------------------------------------ */
 
-
+//skapar ett element för alla h3
 let sectionElement = document.querySelectorAll('section article h3');
-    socialMediaElement = sectionElement[2];
 
-    socialMediaElement.addEventListener('mouseenter', removeMain);
+//skapar ett element för h3: social media
+let socialMediaElement = sectionElement[2];
 
+//skapar ett event som tar bort main-elementet när man klickar på h3-elementet social media
+socialMediaElement.addEventListener('click', removeMain);
 
+//skapar funktionen som tar bort main-elementet
 function removeMain(){
+    //skapar ett element för main
     let mainElement = document.querySelector('main');
-    console.log(mainElement);
+    /* console.log(mainElement); */
 
+    //lägger till ett if statement som endast tar bort main om main-elementet finns
     if (mainElement == mainElement){
         mainElement.remove();
     }
+    //denna funkar inte? får felmeddelande i consolen
     else if (mainElement == null){
-        //hur löser man detta? gör inget om elementet inte finns
-        return 'null';
+        return null;
     }
     
 }
 
+//skapar en funktion som lägger tillbaka main
 function addMain(){
-    let bodyElement = document.querySelector('body');
+    //skapar element för main
     let mainElement = document.querySelector('main');
 
+    //skapar ett if statement som endast lägger till main om det inte redan finns. Finns det, ska den inte returnera något
     if (mainElement == null){
+        //skapar element för header där jag vill lägga in main igen
         let headerElement = document.querySelector('header');
         headerElement.insertAdjacentHTML('afterend', `<main>
         <article class="art-1">
@@ -218,11 +237,9 @@ function addMain(){
     </main>`);
     }
     
-
     else { 
         return null;
     }
-
 
 }
 
@@ -233,24 +250,30 @@ function addMain(){
         //Varje li element ska ha en synlig border. (Valfritt utseende)
 /* ------------------------------------------------------------------------------ */
 
+//skapar ett element för navElement
 navElement = document.querySelector('#header-navigation');
-console.log(navElement);
+/* console.log(navElement); */
 
+//skapar ett element för varukorgs-ikonen i nav:en
 let cartElement = document.querySelector('nav img')
+cartElement.style.padding = '2rem';
 
-cartElement.addEventListener('click', showMyCart);
+//skapar två events som visar kundkorgen (en ul med 10 li:s) när jag håller musen över och döljer när jag tar bort musen
+cartElement.addEventListener('mouseenter', showMyCart);
+cartElement.addEventListener('mouseleave', removeMyCart)
 
-/* showMyCart(); */
-
+//skapar funktionen som skapar en ul med li:s och sedan namnger dem
 function showMyCart(){
+    //skapar ett element för kundkorgen (ul)
     let myCart = document.createElement('ul');
 
+    //skapar en loop som gör 10 li:s 
 for (let i = 0; i < 10; i++){
     let item = document.createElement('li');
     item.style.border = 'darkgrey solid .2rem';
     item.style.margin = '.2rem';
+    //lägger till alla li:s till ul
     myCart.appendChild(item);
-
 }
 
 console.log(myCart);
@@ -259,37 +282,36 @@ myCart.style.border = 'solid darkgrey .15rem'
 myCart.style.borderRadius = '.2rem'
 myCart.style.boxShadow = '.2rem .5rem 1rem grey';
 myCart.style.padding = '.5rem';
-myCart.style.marginLeft = '3rem';
 myCart.style.listStyle = 'none';
-myCart.style.display = 'block';
+myCart.style.width = '18.5%';
+myCart.style.margin = '0 0 0 59rem';
+myCart.style.display = 'flex';
 myCart.style.flexDirection = 'column';
 myCart.style.fontSize = '.9rem';
 
-let cartElement = document.querySelector('nav img')
-console.log(cartElement);
 
+//skapar element för main
+let mainElement = document.querySelector('main');
 
-cartElement.insertAdjacentElement('afterend', myCart); 
+//lägger till produkterna i kundkorgen (myCart-elementet) före mainElementet
+mainElement.insertAdjacentElement('beforebegin', myCart);
 
+//skapar en array som ska namnge alla li:s genom en loop
 let shop = ['Your cart:', 'Sinus Hoodie', 'Sinus Skateboard', 'Sinus Socks', 'Sinus Snapback', 'Sinus Bottle', 'Sinus T-shirt', 'Sinus Sneakers', 'Sinus Stickers', 'Sinus Sunglasses'];
-//console.log(shop);
 
+//skapar li-element av ul (myCart), för att kunna hitta dem i loopen
 let myItems = myCart.children; 
 
-console.log(myItems);
+/* console.log(myItems); */
 
-// let liElements = document.querySelectorAll('li');
-//console.log(liElements);
-
+//skapar loopen som namnger alla li:s (ger dem ett value)
 for (let i = 0; i < myItems.length; i++){
     myItems[i].innerText = shop[i];
     myItems[i].style.padding = '.3rem';
-} 
-
-
+    } 
 }
 
-
+//skapar en funktion som tar bort kundkorgen 
 function removeMyCart(){
     let myCart = document.querySelector('ul');
     myCart.remove();
